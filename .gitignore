@@ -1,0 +1,49 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+.tf-env/
+*.env
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# IDE and editor settings
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Model files and large datasets
+*.h5
+*.keras
+*.pkl
+*.joblib
+*.pt
+*.pth
+*.weights
+
+# Uploads / media
+static/uploads/
+uploads/
+
+# Python build files
+build/
+dist/
+*.egg-info/
+
+# Cache
+*.cache
+

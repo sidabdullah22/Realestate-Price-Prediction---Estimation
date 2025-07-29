@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damage Estimation</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+
+    <div class="img"></div>
+
+    <div class="form-container">
+        <h2>Upload Images for Damage Estimation</h2>
+
+        <!-- Choose Multiple Files -->
+        <form class="form">
+            <input type="file" id="fileUpload" class="file-upload" multiple />
+        </form>
+
+        <!-- Estimate Button -->
+        <button class="submit" onclick="onClickedEstimateDamage()" type="button">Estimate Damage</button>
+
+        <!-- Back to Home -->
+        <button class="submit" onclick="window.location.href='home.html'" type="button">Back to Home</button>
+
+    </div>
+
+    <!-- Inline JavaScript -->
+    <script>
+        function onClickedEstimateDamage() {
+            var fileInput = document.getElementById('fileUpload');
+            var files = fileInput.files;
+
+            if (files.length === 0) {
+                alert("Please upload at least one image!");
+                return;
+            }
+
+            console.log(files);  // Check if files are correctly selected
+
+            var formData = new FormData();
+            for (var i = 0; i < files.length; i++) {
+                formData.append('fileUpload', files[i]);
+            }
+
+            fetch('http://127.0.0.1:5000/upload_image', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);  // See returned predictions in console
+                localStorage.setItem('predictionResults', JSON.stringify(data));
+                window.location.href = 'result.html';  // Move to result page
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Upload Failed!');
+            });
+        }
+    </script>
+
+</body>
+
+</html>

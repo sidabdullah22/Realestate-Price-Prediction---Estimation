@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damage Estimation Result</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h2>Damage Estimation Result</h2>
+
+        <!-- Display Damage Estimation -->
+        <div id="resultContainer" class="result">
+            <h3>Damage Estimation:</h3>
+            <p id="damageEstimation">Loading estimation...</p>
+        </div>
+
+        <!-- Back to Home -->
+        <button class="submit" onclick="window.location.href='home.html'" type="button">Back to Home</button>
+    </div>
+
+    <!-- Inline JavaScript -->
+    <script>
+        window.onload = function() {
+            var predictionResults = JSON.parse(localStorage.getItem('predictionResults'));
+
+            console.log("Prediction Results: ", predictionResults);  // Log prediction results to check
+
+            if (predictionResults) {
+                var damageEstimation = "";
+
+                // Loop through predictionResults and add damage predictions
+                predictionResults.damage_predictions.forEach(function(result) {
+                    console.log(result);  // Log each result to ensure it has the expected properties
+
+                    // Add the prediction (no image display)
+                    damageEstimation += result.damage_prediction + '<br>';
+                });
+
+                // Display the damage predictions
+                document.getElementById('damageEstimation').innerHTML = damageEstimation;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
